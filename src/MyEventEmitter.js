@@ -13,6 +13,7 @@ class MyEventEmitter {
 
     return this;
   }
+
   once(event, listener) {
     const onceWrapper = (...args) => {
       this.off(event, onceWrapper);
@@ -32,7 +33,10 @@ class MyEventEmitter {
     const arrWithoutListener = arr.filter((el) => el !== listener);
 
     this.events.set(event, arrWithoutListener);
+
+    return this;
   }
+
   emit(event, ...args) {
     const listeners = this.events.get(event);
 
@@ -72,6 +76,8 @@ class MyEventEmitter {
     }
 
     this.events.clear();
+
+    return this;
   }
 
   listenerCount(event) {
