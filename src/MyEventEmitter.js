@@ -19,7 +19,7 @@ class MyEventEmitter {
       listener(...args);
     };
 
-    this.on(event, onceWrapper);
+    return this.on(event, onceWrapper);
   }
 
   off(event, listener) {
@@ -51,6 +51,8 @@ class MyEventEmitter {
     const arr = this.events.get(event) || [];
 
     this.events.set(event, [listener, ...arr]);
+
+    return this;
   }
 
   prependOnceListener(event, listener) {
@@ -59,7 +61,7 @@ class MyEventEmitter {
       listener(...args);
     };
 
-    this.prependListener(event, onceWrapper);
+    return this.prependListener(event, onceWrapper);
   }
 
   removeAllListeners(event) {
